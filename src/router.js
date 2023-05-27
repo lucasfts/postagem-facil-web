@@ -1,14 +1,12 @@
-import { createBrowserRouter } from "react-router-dom";
 import Chart from "./components/dashboard/Chart";
 import Deposits from "./components/dashboard/Deposits";
-import Orders from "./components/dashboard/Orders";
 import { Title } from "@mui/icons-material";
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import PeopleIcon from '@mui/icons-material/People';
 import BarChartIcon from '@mui/icons-material/BarChart';
 import LayersIcon from '@mui/icons-material/Layers';
-import AssignmentIcon from '@mui/icons-material/Assignment';
+import Solicitaoes from "./components/dashboard/Solicitacoes";
 
 export const routes = [
   {
@@ -19,7 +17,7 @@ export const routes = [
   },
   {
     path: "/solicitacoes",
-    element: <Chart />,
+    element: <Solicitaoes />,
     icon: <ShoppingCartIcon />,
     linkText: "Solicitações",
   },
@@ -31,7 +29,7 @@ export const routes = [
   },
   {
     path: "/relatorios",
-    element: <Orders />,
+    element: <Chart />,
     icon: <BarChartIcon />,
     linkText: "Relatórios",
   },
