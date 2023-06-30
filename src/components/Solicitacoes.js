@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState, useEffect }  from 'react';
 import Link from '@mui/material/Link';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -7,25 +7,16 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Title from './Title';
 import { Button } from '@mui/material';
+import { obterSolicitacoes } from '../services/solicitacoes.service';
 
-const rows = [
-  {
-    id: 1,
-    usuario: 'Ze Mane',
-    enderecoRetirada: 'Rua abc',
-    enderecoEntrega: 'Avenida 123',
-    dimensoes: '190x50x30',
-    peso: '12kg',
-    valorCobrado: '785',
-    status: 'Coletado'
-  }
-];
-
-function preventDefault(event) {
-  event.preventDefault();
-}
 
 export default function Solicitaoes() {
+  const [solicitacoes, setSolicitacoes] = useState([]);
+
+  useEffect(() => {
+    obterSolicitacoes(1, 100).then(setSolicitacoes);
+  }, []);
+
   return (
     <React.Fragment>
       <Title>Solicitações de Postagem</Title>
@@ -33,27 +24,25 @@ export default function Solicitaoes() {
         <TableHead>
           <TableRow>
             <TableCell>Id</TableCell>
-            <TableCell>Usuário</TableCell>
-            <TableCell>Endereço Retirada</TableCell>
-            <TableCell>Endereço Entrega</TableCell>
-            <TableCell>Dimensoes</TableCell>
+            <TableCell>Endereço</TableCell>
+            <TableCell>Transportadora</TableCell>
             <TableCell>Peso</TableCell>
+            <TableCell>Dimensoes</TableCell>
             <TableCell>Valor Cobrado</TableCell>
             <TableCell>Status</TableCell>
             <TableCell>Ações</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
-            <TableRow key={row.id}>
-              <TableCell>{row.id}</TableCell>
-              <TableCell>{row.usuario}</TableCell>
-              <TableCell>{row.enderecoRetirada}</TableCell>
-              <TableCell>{row.enderecoEntrega}</TableCell>
-              <TableCell>{row.dimensoes}</TableCell>
-              <TableCell>{row.peso}</TableCell>
-              <TableCell>{row.valorCobrado}</TableCell>
-              <TableCell>{row.status}</TableCell>
+          {solicitacoes.map(solicitacao => (
+            <TableRow key={solicitacao.id}>
+              <TableCell>{solicitacao.id}</TableCell>
+              <TableCell>{solicitacao.endereco}</TableCell>
+              <TableCell>{solicitacao.transportadora.nome}</TableCell>
+              <TableCell>{solicitacao.pesoLimite.descricao}</TableCell>
+              <TableCell>{solicitacao.tipoCaixa.descricao}</TableCell>
+              <TableCell>R$ {solicitacao.custo.toFixed(2)}</TableCell>
+              <TableCell>{solicitacao.status.descricao}</TableCell>
               <TableCell>
                 <Button>Alterar</Button>
               </TableCell>
