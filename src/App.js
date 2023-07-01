@@ -5,7 +5,6 @@ import MuiDrawer from "@mui/material/Drawer";
 import Box from "@mui/material/Box";
 import MuiAppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
-import List from "@mui/material/List";
 import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
@@ -16,7 +15,7 @@ import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import { Route, Routes } from "react-router-dom";
 import {  routes } from "./router";
-import { mainListItems } from "./components/listItems";
+import MenuNavegacao from "./components/MenuNavegacao";
 
 const drawerWidth = 240;
 
@@ -124,7 +123,7 @@ const App = () => {
             </IconButton>
           </Toolbar>
           <Divider />
-          <List component="nav">{mainListItems}</List>
+          <MenuNavegacao />
         </Drawer>
         <Box
           component="main"

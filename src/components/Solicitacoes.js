@@ -24,11 +24,11 @@ export default function Solicitaoes() {
         <TableHead>
           <TableRow>
             <TableCell>Id</TableCell>
-            <TableCell>Endereço</TableCell>
             <TableCell>Transportadora</TableCell>
             <TableCell>Peso</TableCell>
             <TableCell>Dimensoes</TableCell>
             <TableCell>Valor Cobrado</TableCell>
+            <TableCell>Endereço Coleta</TableCell>
             <TableCell>Status</TableCell>
             <TableCell>Ações</TableCell>
           </TableRow>
@@ -37,11 +37,11 @@ export default function Solicitaoes() {
           {solicitacoes.map(solicitacao => (
             <TableRow key={solicitacao.id}>
               <TableCell>{solicitacao.id}</TableCell>
-              <TableCell>{solicitacao.endereco}</TableCell>
               <TableCell>{solicitacao.transportadora.nome}</TableCell>
               <TableCell>{solicitacao.pesoLimite.descricao}</TableCell>
               <TableCell>{solicitacao.tipoCaixa.descricao}</TableCell>
               <TableCell>R$ {solicitacao.custo.toFixed(2)}</TableCell>
+              <TableCell>{solicitacao.endereco}</TableCell>
               <TableCell>{solicitacao.status.descricao}</TableCell>
               <TableCell>
                 <Button>Alterar</Button>
