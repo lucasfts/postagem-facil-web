@@ -1,16 +1,14 @@
 import React, { useState, useEffect }  from 'react';
-import Link from '@mui/material/Link';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import Title from './Title';
+import Title from './components/Title';
 import { Button } from '@mui/material';
 import { obterSolicitacoes } from '../services/solicitacoes.service';
 
-
-export default function Solicitaoes() {
+const Solicitaoes = () => {
   const [solicitacoes, setSolicitacoes] = useState([]);
 
   useEffect(() => {
@@ -53,3 +51,5 @@ export default function Solicitaoes() {
     </React.Fragment>
   );
 }
+
+export default Solicitaoes;

@@ -14,8 +14,8 @@ import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import { Route, Routes } from "react-router-dom";
-import {  routes } from "./router";
-import MenuNavegacao from "./components/MenuNavegacao";
+import {  routes } from "./router/routes";
+import MenuNavegacao from "./router/MenuNavegacao";
 
 const drawerWidth = 240;
 

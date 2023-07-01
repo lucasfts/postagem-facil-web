@@ -1,7 +1,7 @@
 import { Title } from "@mui/icons-material";
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import LayersIcon from '@mui/icons-material/Layers';
-import Solicitaoes from "./components/Solicitacoes";
+import Solicitaoes from "../pages/Solicitacoes";
 
 export const routes = [
   {
