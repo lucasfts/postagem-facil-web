@@ -1,19 +1,18 @@
-import { Title } from "@mui/icons-material";
-import DashboardIcon from '@mui/icons-material/Dashboard';
-import LayersIcon from '@mui/icons-material/Layers';
+import { List, LocalShipping } from "@mui/icons-material";
 import Solicitaoes from "../pages/Solicitacoes";
+import Coletas from "../pages/Coletas";
 
 export const routes = [
   {
     path: "/",
     element: <Solicitaoes />,
-    icon: <DashboardIcon />,
+    icon: <List />,
     linkText: "Solicitações",
   },
   {
-    path: "/integracoes",
-    element: <Title />,
-    icon:  <LayersIcon />,
-    linkText: "Integrações",
-  },
+    path: "/coletas",
+    element: <Coletas />,
+    icon: <LocalShipping />,
+    linkText: "Coletas",
+  }
 ];

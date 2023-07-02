@@ -1,4 +1,4 @@
-import React, { useState, useEffect }  from 'react';
+import React, { useState, useEffect } from 'react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -7,18 +7,24 @@ import TableRow from '@mui/material/TableRow';
 import Title from './components/Title';
 import { Button } from '@mui/material';
 import { obterSolicitacoes } from '../services/solicitacoes.service';
+import ModalColeta from './components/ModalColeta';
 
 const Solicitaoes = () => {
   const [solicitacoes, setSolicitacoes] = useState([]);
+  const [modal, setModal] = useState(null);
 
   useEffect(() => {
     obterSolicitacoes(1, 100).then(setSolicitacoes);
   }, []);
 
+  const exibirModalColeta = (solicitacao) => {
+    setModal(<ModalColeta solicitacao={solicitacao} onClose={() => setModal(null)} />);
+  }
+
   return (
     <React.Fragment>
       <Title>Solicitações de Postagem</Title>
-      <Table size="small">
+      <Table size="md">
         <TableHead>
           <TableRow>
             <TableCell>Id</TableCell>
@@ -42,12 +48,13 @@ const Solicitaoes = () => {
               <TableCell>{solicitacao.endereco}</TableCell>
               <TableCell>{solicitacao.status.descricao}</TableCell>
               <TableCell>
-                <Button>Alterar</Button>
+                {solicitacao.status.id === 2 && <Button onClick={() => exibirModalColeta(solicitacao)}>Registrar Coleta</Button>}
               </TableCell>
             </TableRow>
           ))}
         </TableBody>
       </Table>
+      {modal}
     </React.Fragment>
   );
 }
