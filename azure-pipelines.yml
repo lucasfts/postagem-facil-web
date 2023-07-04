@@ -30,6 +30,16 @@ stages:
       vmImage: $(vmImageName)
 
     steps:
+    - task: NodeTool@0
+      inputs:
+        versionSpec: '18.x'
+      displayName: 'Install Node.js'
+    - script: |
+        npm install
+      displayName: 'npm install'
+    - script: |
+        npm run build
+      displayName: 'npm build'
     - task: ArchiveFiles@2
       displayName: 'Archive files'
       inputs:
@@ -63,9 +73,5 @@ stages:
               appType: webAppLinux
               WebAppName: $(webAppName)
               packageForLinux: '$(Pipeline.Workspace)/drop/$(Build.BuildId).zip'
-              RuntimeStack: 'NODE|10.10'
-              StartupCommand: 'npm run start'
-              ScriptType: 'Inline Script'
-              InlineScript: |
-                npm install
-                npm run build --if-present
+              RuntimeStack: 'NODE|18-lts'
+              StartupCommand: 'pm2 serve /home/site/wwwroot/build --no-daemon --spa'
