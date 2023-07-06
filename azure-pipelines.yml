@@ -7,15 +7,8 @@ trigger:
 - main
 
 variables:
-
-  # Azure Resource Manager connection created during pipeline creation
-  azureSubscription: '132a6f2e-f816-4b82-b91e-ffc16bc80aa0'
-
-  # Web app name
-  webAppName: 'postagem-facil'
-
   # Environment name
-  environmentName: 'postagem-facil'
+  environmentName: 'Production'
 
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
@@ -49,7 +42,7 @@ stages:
         archiveFile: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
         replaceExistingArchive: true
 
-    - upload: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
+    - upload: $(Build.BuildId).zip
       artifact: drop
 
 - stage: Deploy
@@ -67,11 +60,11 @@ stages:
         deploy:
           steps:
           - task: AzureRmWebAppDeployment@4
-            displayName: 'Azure App Service Deploy: postagem-facil'
             inputs:
-              azureSubscription: $(azureSubscription)
-              appType: webAppLinux
-              WebAppName: $(webAppName)
-              packageForLinux: '$(Pipeline.Workspace)/drop/$(Build.BuildId).zip'
+              ConnectionType: 'AzureRM'
+              azureSubscription: 'Azure basic subscription (bfc785e5-3934-4759-9200-1bcfe3e2d212)'
+              appType: 'webAppLinux'
+              WebAppName: 'postagem-facil'
+              packageForLinux: '$(Build.ArtifactStagingDirectory)/**/*.zip'
               RuntimeStack: 'NODE|18-lts'
-              StartupCommand: 'pm2 serve /home/site/wwwroot/build --no-daemon --spa'
+
