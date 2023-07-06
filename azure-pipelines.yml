@@ -8,7 +8,7 @@ trigger:
 
 variables:
   # Environment name
-  environmentName: 'Production'
+  environmentName: 'postagem-facil'
 
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
@@ -41,7 +41,6 @@ stages:
         archiveType: zip
         archiveFile: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
         replaceExistingArchive: true
-
     - upload: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
       artifact: drop
 
@@ -65,6 +64,6 @@ stages:
               azureSubscription: 'Azure basic subscription (bfc785e5-3934-4759-9200-1bcfe3e2d212)'
               appType: 'webAppLinux'
               WebAppName: 'postagem-facil'
-              packageForLinux: '**/$(Build.BuildId).zip'
+              packageForLinux: '$(Pipeline.Workspace)/drop/$(Build.BuildId).zip'
               RuntimeStack: 'NODE|18-lts'
 
