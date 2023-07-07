@@ -66,4 +66,6 @@ stages:
               WebAppName: 'postagem-facil'
               packageForLinux: '$(Pipeline.Workspace)/drop/$(Build.BuildId).zip'
               RuntimeStack: 'NODE|18-lts'
+              StartupCommand: 'pm2 serve /home/site/wwwroot/build --no-daemon --spa'
+              AppSettings: '-WEBSITE_RUN_FROM_PACKAGE 1'
 
