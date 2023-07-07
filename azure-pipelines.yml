@@ -74,9 +74,7 @@ stages:
               generalSettings: |
                 [ 
                   { 
-                     "name": "startupCommand",
-                      "value": "pm2 serve /home/site/wwwroot/build --no-daemon --spa",
-                      "slotSetting": false
+                      "startupCommand": "pm2 serve /home/site/wwwroot/build --no-daemon --spa"
                   }  
                 ]
           - task: AzureRmWebAppDeployment@4
