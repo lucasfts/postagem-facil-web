@@ -71,6 +71,14 @@ stages:
                       "slotSetting": false
                   }  
                 ]
+              generalSettings: |
+                [ 
+                  { 
+                     "name": "startupCommand",
+                      "value": "pm2 serve /home/site/wwwroot/build --no-daemon --spa",
+                      "slotSetting": false
+                  }  
+                ]
           - task: AzureRmWebAppDeployment@4
             inputs:
               ConnectionType: 'AzureRM'
@@ -79,5 +87,5 @@ stages:
               WebAppName: 'postagem-facil'
               packageForLinux: '$(Pipeline.Workspace)/drop/$(Build.BuildId).zip'
               RuntimeStack: 'NODE|18-lts'
-              StartupCommand: 'pm2 serve /home/site/wwwroot/build --no-daemon --spa'
+
 
