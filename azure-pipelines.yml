@@ -71,6 +71,11 @@ stages:
                       "slotSetting": false
                   }  
                 ]
+          - task: AzureAppServiceManage@0
+            inputs:
+              azureSubscription: 'Azure basic subscription (bfc785e5-3934-4759-9200-1bcfe3e2d212)'
+              Action: 'Stop Azure App Service'
+              WebAppName: 'postagem-facil'
           - task: AzureRmWebAppDeployment@4
             inputs:
               ConnectionType: 'AzureRM'
