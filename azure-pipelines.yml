@@ -60,6 +60,19 @@ stages:
       runOnce:
         deploy:
           steps:
+          - task: AzureAppServiceSettings@1
+            inputs:
+              azureSubscription: 'Azure basic subscription (bfc785e5-3934-4759-9200-1bcfe3e2d212)'
+              appName: 'postagem-facil'
+              resourceGroupName: 'tcc-puc-minas'
+              appSettings: |
+                [ 
+                  { 
+                     "name": "WEBSITE_RUN_FROM_PACKAGE",
+                      "value": 1,
+                      "slotSetting": false
+                  }  
+                ]
           - task: AzureRmWebAppDeployment@4
             inputs:
               ConnectionType: 'AzureRM'
@@ -69,6 +82,5 @@ stages:
               packageForLinux: '$(Pipeline.Workspace)/drop/$(Build.BuildId).zip'
               RuntimeStack: 'NODE|18-lts'
               StartupCommand: 'pm2 serve /home/site/wwwroot/build --no-daemon --spa'
-              ConfigurationSettings: '-WEBSITE_RUN_FROM_PACKAGE 1'
 
 
