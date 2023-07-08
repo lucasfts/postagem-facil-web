@@ -71,6 +71,16 @@ stages:
                      "name": "WEBSITE_RUN_FROM_PACKAGE",
                       "value": 1,
                       "slotSetting": false
+                  },
+                  { 
+                     "name": "REACT_APP_OPERACOES_API",
+                      "value": "https://postagem-facil-api-gateway.azure-api.net/servico-operacoes/api",
+                      "slotSetting": false
+                  },
+                  { 
+                     "name": "REACT_APP_SOLICITACOES_API",
+                      "value": "https://postagem-facil-api-gateway.azure-api.net/servico-solicitacoes/api/",
+                      "slotSetting": false
                   }  
                 ]
           - task: AzureRmWebAppDeployment@4
