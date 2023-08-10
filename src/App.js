@@ -8,14 +8,13 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
-import Badge from "@mui/material/Badge";
 import Container from "@mui/material/Container";
 import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-import NotificationsIcon from "@mui/icons-material/Notifications";
 import { Route, Routes } from "react-router-dom";
-import {  routes } from "./router/routes";
+import { routes } from "./router/routes";
 import MenuNavegacao from "./router/MenuNavegacao";
+import { Link } from "@mui/material";
 
 const drawerWidth = 240;
 
@@ -75,12 +74,8 @@ const App = () => {
     <ThemeProvider theme={mdTheme}>
       <Box sx={{ display: "flex" }}>
         <CssBaseline />
-        <AppBar position="absolute" open={open}>
-          <Toolbar
-            sx={{
-              pr: "24px", // keep right padding when drawer closed
-            }}
-          >
+        <AppBar position="absolute" open={open} style={{ paddingRight: 20 }}>
+          <Toolbar sx={{ pr: "24px" }}>
             <IconButton
               edge="start"
               color="inherit"
@@ -102,11 +97,9 @@ const App = () => {
             >
               Postagem Fácil
             </Typography>
-            <IconButton color="inherit">
-              <Badge color="secondary">
-                <NotificationsIcon />
-              </Badge>
-            </IconButton>
+            <Link style={{ color: "inherit", textDecoration: "none" }} href="/.auth/logout">
+              Sair
+            </Link>
           </Toolbar>
         </AppBar>
         <Drawer variant="permanent" open={open}>
@@ -149,6 +142,6 @@ const App = () => {
       </Box>
     </ThemeProvider>
   );
-}
+};
 
 export default App;
